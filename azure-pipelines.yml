@@ -55,7 +55,7 @@ stages:
           - task: replacetokens@5
             displayName: Replace Token (Replica, Image)
             inputs:
-                    rootDirectory: '$(Build.SourcesDirectory)/templates'
+                    rootDirectory: '$(Build.SourcesDirectory)/helm/templates'
                     targetFiles: 'aksManifestFile.yaml'
                     encoding: 'auto'
                     tokenPattern: 'custom'
@@ -110,7 +110,7 @@ stages:
                 - task: HelmDeploy@0
                   inputs:
                     command: 'package'
-                    chartPath: 'LabExerciseNoventiq-01'
+                    chartPath: 'helm'
                     chartVersion: 'hv:1'
                 - task: PublishPipelineArtifact@1
                   inputs:
