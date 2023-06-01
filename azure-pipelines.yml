@@ -119,4 +119,4 @@ stages:
                   inputs:
                     action: "deploy"
                     namespace: "default"
-                    manifests: "$(Pipeline.Workspace)/manifests/templates/aksManifestFile.yaml"
+                    manifests: "$(Pipeline.Workspace)/manifests/manifests/templates/aksManifestFile.yaml"
