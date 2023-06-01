@@ -53,9 +53,9 @@ stages:
                     useLegacyPattern: false
                     enableTelemetry: true
           - task: replacetokens@5
-            displayName: Replace Token (replica number)
+            displayName: Replace Token (Replica, Image)
             inputs:
-                    rootDirectory: '$(Build.SourcesDirectory)/'
+                    rootDirectory: '$(Build.SourcesDirectory)/templates'
                     targetFiles: 'aksManifestFile.yaml'
                     encoding: 'auto'
                     tokenPattern: 'custom'
@@ -119,4 +119,4 @@ stages:
                   inputs:
                     action: "deploy"
                     namespace: "default"
-                    manifests: "$(Pipeline.Workspace)/manifests/aksManifestFile.yaml"
+                    manifests: "$(Pipeline.Workspace)/manifests/templates/aksManifestFile.yaml"
