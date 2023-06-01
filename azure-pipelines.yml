@@ -72,14 +72,14 @@ stages:
           - task: Docker@2
             inputs:
               containerRegistry: "myappacr1998001"
-              repository: $(imageRepo2)
+              repository: $(imageRepo-2)
               command: "buildAndPush"
               Dockerfile: "$(Build.SourcesDirectory)/Dockerfile.app"
               tags: $(appTag-2)
           - task: Docker@2
             inputs:
               containerRegistry: "myappacr1998001"
-              repository: $(imageRepo2)
+              repository: $(imageRepo-2)
               command: "buildAndPush"
               Dockerfile: "$(Build.SourcesDirectory)/Dockerfile.server"
               tags: $(serverTag-2)
