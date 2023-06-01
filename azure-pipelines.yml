@@ -111,7 +111,6 @@ stages:
                   inputs:
                     command: 'package'
                     chartPath: 'helm'
-                    chartVersion: 'hv:1'
                 - task: PublishPipelineArtifact@1
                   inputs:
                         targetPath: '$(Build.ArtifactStagingDirectory)'
