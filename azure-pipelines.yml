@@ -110,7 +110,7 @@ stages:
                 - task: HelmDeploy@0
                   inputs:
                     command: 'package'
-                    chartPath: 'LabExerciseNoventiq-01'
+                    chartPath: 'helm'
                     chartVersion: 'hv:1'
                 - task: PublishPipelineArtifact@1
                   inputs:
