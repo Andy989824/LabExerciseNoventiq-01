@@ -1,32 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app-deployment-frontend-7
+  name: {{ .Values.frontEnd }}
   labels:
-    app: my-app-deployment-frontend-7
+    app: {{ .Values.frontEnd }}
 spec:
   replicas: #replicaNum#
   selector:
     matchLabels:
-      app: my-app-deployment-frontend-7
+      app: {{ .Values.frontEnd }}
   template:
     metadata:
       labels:
-        app: my-app-deployment-frontend-7
+        app: {{ .Values.frontEnd }}
     spec:
       containers:
-        - name: my-app-deployment-frontend-7
-          image: myappacr1998001.azurecr.io/sampleapp-002:#appTag#
+        - name: {{ .Values.frontEnd }}
+          image: #acrLoginServer#/#imageRepo-2#:#appTag-2#
           ports:
             - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-app-deployment-frontend-7
+  name: {{ .Values.frontEnd }}
 spec:
   selector:
-    app: my-app-deployment-frontend-7
+    app: {{ .Values.frontEnd }}
   ports:
     - protocol: TCP
       port: 3000
@@ -37,32 +37,32 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app-deployment-backend-7
+  name: {{ .Values.backEnd }}
   labels:
-    app: my-app-deployment-backend-7
+    app: {{ .Values.backEnd }}
 spec:
   replicas: #replicaNum#
   selector:
     matchLabels:
-      app: my-app-deployment-backend-7
+      app: {{ .Values.backEnd }}
   template:
     metadata:
       labels:
-        app: my-app-deployment-backend-7
+        app: {{ .Values.backEnd }}
     spec:
       containers:
-        - name: my-app-deployment-backend-7
-          image: myappacr1998001.azurecr.io/sampleapp-002:#serverTag#
+        - name: {{ .Values.backEnd }}
+          image: #acrLoginServer#/#imageRepo-2#:#serverTag-2#
           ports:
             - containerPort: 3001
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-app-deployment-backend-7
+  name: {{ .Values.backEnd }}
 spec:
   selector:
-    app: my-app-deployment-backend-7
+    app: {{ .Values.backEnd }}
   ports:
     - protocol: TCP
       port: 3001
