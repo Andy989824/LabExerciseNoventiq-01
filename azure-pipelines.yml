@@ -102,9 +102,21 @@ stages:
           runOnce:
             deploy:
               steps:
-              - task: HelmInstaller@0
-                inputs:
-                  helmVersion: '2.14.1'
-                  installKubectl: true
-              - bash: |
-                  helm ls
+                - task: DownloadPipelineArtifact@2
+                  inputs:
+                    buildType: "current"
+                    artifactName: "manifests"
+                    targetPath: "$(Pipeline.Workspace)/manifests"
+                - task: KubernetesManifest@1
+                  inputs:
+                    action: "createSecret"
+                    namespace: "default"
+                    secretType: "dockerRegistry"
+                    secretName: "$(acr-secret)"
+                    dockerRegistryEndpoint: "myappacr1998001"
+
+                - task: KubernetesManifest@0
+                  inputs:
+                    action: "deploy"
+                    namespace: "default"
+                    manifests: "$(Pipeline.Workspace)/manifests/templates/aksManifestFile.yaml"
