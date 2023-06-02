@@ -102,5 +102,6 @@ stages:
           runOnce:
             deploy:
               steps:
-                - bash:
+                - bash: |
+                    az aks get-credentials --resource-group aks-rg --name aks-cluster-01
                     helm ls
