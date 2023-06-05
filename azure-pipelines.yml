@@ -90,12 +90,12 @@ stages:
               artifact: "manifests"
               publishLocation: "pipeline"
 
-  - stage: Deploy
-    displayName: Deploy to Dev
+  - stage: Deploy-1
+    displayName: Install & Package Helm
     dependsOn: Build
     jobs:
-      - deployment: Deploy
-        displayName: Deploy to AKS
+      - deployment: Deploy-1
+        displayName: Deploy-1
         environment: "Andy989824NoventiqExerciseRepo-01.default"
         pool: "my-laptop-agent"
         strategy:
@@ -116,5 +116,24 @@ stages:
                         targetPath: '$(Build.ArtifactStagingDirectory)'
                         artifact: 'sample-helm-artifact'
                         publishLocation: 'pipeline'
+
+  - stage: Deploy-2
+    displayName: Deploy Helm
+    dependsOn: Deploy-1
+    jobs:
+      - deployment: Deploy-2
+        displayName: Deploy-2
+        environment: "Andy989824NoventiqExerciseRepo-01.default"
+        pool: "my-laptop-agent"
+        strategy:
+
+          runOnce:
+            deploy:
+              steps:
+                - task: DownloadPipelineArtifact@2
+                  inputs:
+                    buildType: "current"
+                    artifactName: "sample-helm-artifact"
+                    targetPath: "$(Pipeline.Workspace)/helmFolder"
                               
                
