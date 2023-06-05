@@ -90,12 +90,12 @@ stages:
               artifact: "manifests"
               publishLocation: "pipeline"
 
-  - stage: Deploy-1
+  - stage: DeployOne
     displayName: Install & Package Helm
     dependsOn: Build
     jobs:
-      - deployment: Deploy-1
-        displayName: Deploy-1
+      - deployment: DeployOne
+        displayName: DeployOne
         environment: "Andy989824NoventiqExerciseRepo-01.default"
         pool: "my-laptop-agent"
         strategy:
@@ -117,12 +117,12 @@ stages:
                         artifact: 'sample-helm-artifact'
                         publishLocation: 'pipeline'
 
-  - stage: Deploy-2
+  - stage: DeployTwo
     displayName: Deploy Helm
-    dependsOn: Deploy-1
+    dependsOn: DeployOne
     jobs:
-      - deployment: Deploy-2
-        displayName: Deploy-2
+      - deployment: DeployTwo
+        displayName: DeployTwo
         environment: "Andy989824NoventiqExerciseRepo-01.default"
         pool: "my-laptop-agent"
         strategy:
