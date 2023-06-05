@@ -132,6 +132,6 @@ stages:
               steps:
                 - script: |
                     mkdir helmFolder2
-                    tar -xzf $(Pipeline.Workspace)/sample-helm-artifact/webapp1-0.1.0.tgz -C helmFolder2/           
+                    tar -xzf $(Build.ArtifactStagingDirectory)/sample-helm-artifact/webapp1-0.1.0.tgz -C helmFolder2/           
                               
                
