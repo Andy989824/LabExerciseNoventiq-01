@@ -99,24 +99,23 @@ stages:
         environment: "Andy989824NoventiqExerciseRepo-01.default"
         pool: "my-laptop-agent"
         strategy:
+
           runOnce:
             deploy:
               steps:
-                - task: DownloadPipelineArtifact@2
+                - task: HelmInstaller@0
                   inputs:
-                    buildType: "current"
-                    artifactName: "manifests"
-                    targetPath: "$(Pipeline.Workspace)/manifests"
-                - task: KubernetesManifest@1
+                    helmVersion: '2.14.1'
+                    installKubectl: true
+                - task: HelmDeploy@0
                   inputs:
-                    action: "createSecret"
-                    namespace: "default"
-                    secretType: "dockerRegistry"
-                    secretName: "$(acr-secret)"
-                    dockerRegistryEndpoint: "myappacr1998001"
-
-                - task: KubernetesManifest@0
+                    command: 'package'
+                    chartPath: 'helm'
+                    chartVersion: 'hv:1'
+                - task: PublishPipelineArtifact@1
                   inputs:
-                    action: "deploy"
-                    namespace: "default"
-                    manifests: "$(Pipeline.Workspace)/manifests/templates/aksManifestFile.yaml"
+                        targetPath: '$(Build.ArtifactStagingDirectory)'
+                        artifact: 'sample-helm-artifact'
+                        publishLocation: 'pipeline'
+                              
+               
