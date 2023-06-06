@@ -130,8 +130,12 @@ stages:
           runOnce:
             deploy:
               steps:
+                - task: DownloadPipelineArtifact@2
+                  inputs:
+                    buildType: "current"
+                    artifactName: "sample-helm-artifact"
+                    targetPath: "$(Pipeline.Workspace)/helmFolder2"
                 - script: |
-                    mkdir helmFolder2
-                    tar -xzf $(Build.ArtifactStagingDirectory)/sample-helm-artifact/webapp1-0.1.0.tgz -C helmFolder2/           
+                    tar -xzf $(Pipeline.Workspace)/helmFolder2/sample-helm-artifact/webapp1-0.1.0.tgz -C helmFolder2/           
                               
                
