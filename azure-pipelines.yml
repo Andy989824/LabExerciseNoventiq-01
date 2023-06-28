@@ -71,14 +71,14 @@ stages:
                     enableTelemetry: true
           - task: Docker@2
             inputs:
-              containerRegistry: "myazacr199898 "
+              containerRegistry: "myazacr-connection"
               repository: $(imageRepo-2)
               command: "buildAndPush"
               Dockerfile: "$(Build.SourcesDirectory)/Dockerfile.app"
               tags: $(appTag-2)
           - task: Docker@2
             inputs:
-              containerRegistry: "myazacr199898 "
+              containerRegistry: "myazacr-connection"
               repository: $(imageRepo-2)
               command: "buildAndPush"
               Dockerfile: "$(Build.SourcesDirectory)/Dockerfile.server"
