@@ -149,5 +149,5 @@ stages:
                     namespace: 'default'
                     command: 'install'
                     chartType: 'FilePath'
-                    chartPath: '''$(Pipeline.Workspace)/helmFolder3/webapp1/Chart.yaml''
+                    chartPath: '$(Pipeline.Workspace)/helmFolder3/webapp1/Chart.yaml'
                
