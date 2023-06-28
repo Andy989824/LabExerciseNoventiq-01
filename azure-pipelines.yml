@@ -137,7 +137,7 @@ stages:
                     targetPath: "$(Pipeline.Workspace)/helmFolder2"
                 - task: ExtractFiles@1
                   inputs:
-                    archiveFilePatterns: '**/*.tgz'
+                    archiveFilePatterns: '$(Pipeline.Workspace)/helmFolder2/*.tgz'
                     destinationFolder: '$(Pipeline.Workspace)/helmFolder2'
                     cleanDestinationFolder: true
                     overwriteExistingFiles: false
