@@ -135,9 +135,12 @@ stages:
                     buildType: "current"
                     artifactName: "sample-helm-artifact"
                     targetPath: "$(Pipeline.Workspace)/helmFolder2"
-              
-    
-
+                - task: ExtractFiles@1
+                  inputs:
+                    archiveFilePatterns: '**/*.tgz'
+                    destinationFolder: '$(Pipeline.Workspace)/helmFolder2'
+                    cleanDestinationFolder: true
+                    overwriteExistingFiles: false
 
                               
                
