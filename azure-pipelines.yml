@@ -135,7 +135,9 @@ stages:
                     buildType: "current"
                     artifactName: "sample-helm-artifact"
                     targetPath: "$(Pipeline.Workspace)/helmFolder2"
-                - script: |
-                    tar -xzf $(Pipeline.Workspace)/helmFolder2/webapp1-0.1.0.tgz -C helmFolder2/           
+              
+    
+
+
                               
                
