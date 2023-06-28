@@ -13,7 +13,7 @@ stages:
     jobs:
       - job: Build
         displayName: Build
-        pool: "my-laptop-agent"
+        pool: "myLaptopAgent"
         steps:
           - script: echo 'This is new pipeline with helm'
 
@@ -97,7 +97,7 @@ stages:
       - deployment: DeployOne
         displayName: DeployOne
         environment: "Andy989824LabExerciseNoventiq-01-Environment.default"
-        pool: "my-laptop-agent"
+        pool: "myLaptopAgent"
         strategy:
 
           runOnce:
@@ -124,7 +124,7 @@ stages:
       - deployment: DeployTwo
         displayName: DeployTwo
         environment: "Andy989824LabExerciseNoventiq-01-Environment.default"
-        pool: "my-laptop-agent"
+        pool: "myLaptopAgent"
         strategy:
 
           runOnce:
