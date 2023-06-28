@@ -71,14 +71,14 @@ stages:
                     enableTelemetry: true
           - task: Docker@2
             inputs:
-              containerRegistry: "myappacr1998001"
+              containerRegistry: "myazacr199898 "
               repository: $(imageRepo-2)
               command: "buildAndPush"
               Dockerfile: "$(Build.SourcesDirectory)/Dockerfile.app"
               tags: $(appTag-2)
           - task: Docker@2
             inputs:
-              containerRegistry: "myappacr1998001"
+              containerRegistry: "myazacr199898 "
               repository: $(imageRepo-2)
               command: "buildAndPush"
               Dockerfile: "$(Build.SourcesDirectory)/Dockerfile.server"
@@ -96,7 +96,7 @@ stages:
     jobs:
       - deployment: DeployOne
         displayName: DeployOne
-        environment: "Andy989824NoventiqExerciseRepo-01.default"
+        environment: "Andy989824LabExerciseNoventiq-01-Environment.default"
         pool: "my-laptop-agent"
         strategy:
 
@@ -123,7 +123,7 @@ stages:
     jobs:
       - deployment: DeployTwo
         displayName: DeployTwo
-        environment: "Andy989824NoventiqExerciseRepo-01.default"
+        environment: "Andy989824LabExerciseNoventiq-01-Environment.default"
         pool: "my-laptop-agent"
         strategy:
 
