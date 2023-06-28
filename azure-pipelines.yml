@@ -142,5 +142,11 @@ stages:
                     cleanDestinationFolder: true
                     overwriteExistingFiles: false
 
-                              
+                - task: HelmDeploy@0
+                  inputs:
+                    connectionType: 'Kubernetes Service Connection'
+                    namespace: 'default'
+                    command: 'install'
+                    chartType: 'FilePath'
+                    chartPath: '''$(Pipeline.Workspace)/helmFolder3/webapp1/Chart.yaml''
                
