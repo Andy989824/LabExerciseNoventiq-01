@@ -145,6 +145,7 @@ stages:
                 - task: HelmDeploy@0
                   inputs:
                     connectionType: 'Kubernetes Service Connection'
+                    kubernetesServiceConnection: 'Andy989824LabExerciseNoventiq-01-Environment-myAKS01-default-1687923878735'
                     namespace: 'default'
                     command: 'install'
                     chartType: 'FilePath'
