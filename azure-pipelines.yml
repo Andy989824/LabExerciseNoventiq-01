@@ -107,6 +107,8 @@ stages:
                   inputs:
                     helmVersion: '2.14.1'
                     installKubectl: true
+                    checkLatestHelmVersion: false
+
                 - task: HelmDeploy@0
                   inputs:
                     command: 'package'
@@ -143,6 +145,13 @@ stages:
                     cleanDestinationFolder: true
                     overwriteExistingFiles: false
 
+                - task: Kubernetes@1
+                  displayName: Login to Kubernetes
+                  inputs:
+                    connectionType: 'Kubernetes Service Connection'
+                    kubernetesServiceEndpoint: 'Andy989824LabExerciseNoventiq-01-Environment-myAKS01-default-1687923878735'
+                    namespace: 'default'
+                    command: 'login'
                 - task: HelmDeploy@0
                   inputs:
                     connectionType: 'Kubernetes Service Connection'
