@@ -142,9 +142,3 @@ stages:
                     destinationFolder: '$(Pipeline.Workspace)/helmFolder3'
                     cleanDestinationFolder: true
                     overwriteExistingFiles: false
-                - task: KubernetesManifest@0
-                  inputs:
-                    action: "deploy"
-                    namespace: "default"
-                    manifests: "$(Pipeline.Workspace)/helmFolder3/webapp1/templates/aksManifestFile.yaml"
-               
