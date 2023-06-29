@@ -136,15 +136,15 @@ stages:
                     artifactName: "sample-helm-artifact"
                     targetPath: "$(Pipeline.Workspace)/helmFolder2"
 
-                - task: HelmDeploy@0
+                - task: ExtractFiles@1
                   inputs:
-                    connectionType: 'Azure Resource Manager'
-                    azureSubscription: 'Visual Studio Enterprise Subscription – MPN(1)(8375eb33-2705-4cd3-bf3e-c1cbf47014c6)'
-                    azureResourceGroup: 'aks-rg'
-                    kubernetesCluster: 'myAKS01'
-                    useClusterAdmin: true
-                    namespace: 'default'
-                    command: 'install'
-                    chartType: 'FilePath'
-                    chartPath: '$(Pipeline.Workspace)/helmFolder2/*.tgz'
+                    archiveFilePatterns: '$(Pipeline.Workspace)/helmFolder2/*.tgz'
+                    destinationFolder: '$(Pipeline.Workspace)/helmFolder3'
+                    cleanDestinationFolder: true
+                    overwriteExistingFiles: false
+                - task: KubernetesManifest@0
+                  inputs:
+                    action: "deploy"
+                    namespace: "default"
+                    manifests: "$(Pipeline.Workspace)/helmFolder3/webapp1/templates/aksManifestFile.yaml"
                
