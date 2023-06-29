@@ -135,12 +135,6 @@ stages:
                     buildType: "current"
                     artifactName: "sample-helm-artifact"
                     targetPath: "$(Pipeline.Workspace)/helmFolder2"
-                - task: ExtractFiles@1
-                  inputs:
-                    archiveFilePatterns: '$(Pipeline.Workspace)/helmFolder2/*.tgz'
-                    destinationFolder: '$(Pipeline.Workspace)/helmFolder3'
-                    cleanDestinationFolder: true
-                    overwriteExistingFiles: false
 
                 - task: HelmDeploy@0
                   inputs:
@@ -149,5 +143,5 @@ stages:
                     namespace: 'default'
                     command: 'install'
                     chartType: 'FilePath'
-                    chartPath: '$(Pipeline.Workspace)/helmFolder3/webapp1/templates/aksManifestFile.yaml'
+                    chartPath: '$(Pipeline.Workspace)/helmFolder2/*.tgz'
                
