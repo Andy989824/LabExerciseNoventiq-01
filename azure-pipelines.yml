@@ -107,7 +107,6 @@ stages:
                   inputs:
                     helmVersion: '2.14.1'
                     installKubectl: true
-                    checkLatestHelmVersion: false
 
                 - task: HelmDeploy@0
                   inputs:
